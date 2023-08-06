@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, SearchForm, Grid, GridItem, Text, CardItem } from 'components';
 import { getImages } from 'service/image-service';
+import { Loader } from 'components/Loader/Loader';
 
 export const Gallery = () => {
   const [images, setImages] = useState([]);
@@ -9,7 +10,7 @@ export const Gallery = () => {
   const [showBtn, setShowBtn] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -57,7 +58,7 @@ export const Gallery = () => {
         <Text textAlign="center">Sorry. There are no images ... 😭</Text>
       )}
       {error && <Text textAlign="center">Sorry. {error} 😭</Text>}
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
     </>
   );
 };
